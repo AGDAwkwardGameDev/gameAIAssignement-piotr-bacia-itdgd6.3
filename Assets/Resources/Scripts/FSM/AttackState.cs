@@ -8,9 +8,9 @@ public class AttackState : BaseStateClass
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void stateUpdate()
     {
-        
+        print("attacking");
     }
 }

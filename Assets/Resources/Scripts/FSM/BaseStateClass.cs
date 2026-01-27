@@ -5,9 +5,17 @@ public class BaseStateClass : MonoBehaviour
     public bool isActive = false;
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        if(!isActive)
+        if (!isActive)
             return;
+        else
+        {
+            stateUpdate();
+        }
+    }
+    public virtual void stateUpdate()
+    {
+
     }
 }

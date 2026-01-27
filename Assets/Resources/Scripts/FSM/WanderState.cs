@@ -8,9 +8,8 @@ public class WanderState : BaseStateClass
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void stateUpdate()
     {
-        
+        print("Wandering");
     }
 }

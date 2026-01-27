@@ -7,10 +7,8 @@ public class PersueState : BaseStateClass
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void stateUpdate()
     {
-        
+        print("Persuing");
     }
 }

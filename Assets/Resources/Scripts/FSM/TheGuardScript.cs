@@ -1,5 +1,5 @@
 using UnityEngine;
-using Unity.InputSystem;
+using UnityEngine.InputSystem;
 
 public class TheGuardScript : MonoBehaviour
 {
@@ -10,13 +10,13 @@ public class TheGuardScript : MonoBehaviour
     void Start()
     {
         currentState = startState;
+        currentState.isActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentState.isActive = false;
-        //Testing
+        
         if(Keyboard.current.f1Key.isPressed)
         {
             SwitchState(wanderState);
@@ -33,6 +33,9 @@ public class TheGuardScript : MonoBehaviour
     }
     void SwitchState(BaseStateClass newState)
     {
+        if(currentState == newState
+            || newState == null)
+            return;
         currentState.isActive = false;
         currentState = newState;
         currentState.isActive = true;
