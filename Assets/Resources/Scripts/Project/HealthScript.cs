@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class PersueState : BaseStateClass
+public class HealthScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
-    public override void stateUpdate()
+
+    // Update is called once per frame
+    void Update()
     {
-        print("Persuing");
+        
     }
 }
