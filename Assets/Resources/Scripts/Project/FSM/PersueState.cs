@@ -1,69 +1,71 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PersueState : BaseStateClass
 {
-    private Vector3 lastKnownPlayerPosition;
-    private float timeSinceLost = 0f;
+    [SerializeField] float persueSpeed = 6f;
 
-    private const float LOST_SIGHT_TIME = 5f;
+    Vector3 lastKnownPlayerPosition;
+    float timeSinceLost = 0f;
+    const float LOST_SIGHT_TIME = 5f;
 
-    public override void Start()
+    NavMeshAgent agent;
+
+    public override void OnEnter()
     {
-        base.Start();
+        base.OnEnter();
 
-        // Start chasing current known target if any
-        var currentTarget = guardScript.GetCurrentTarget();
-        if (currentTarget != null)
+        // Allow GuardScript to switch to Attack while pursuing
+        allowExternalTransitions = true;
+
+        agent = guardScript.GetNavMeshAgent();
+        if (agent != null)
         {
-            guardScript.GetAIDestinationSetter().target = currentTarget;
-            lastKnownPlayerPosition = currentTarget.position;
-        }
-        else
-        {
-            lastKnownPlayerPosition = guardScript.transform.position;
+            agent.speed = persueSpeed;
+            agent.isStopped = false;
+
+            // Make sure we can actually get into attack radius
+            agent.stoppingDistance = guardScript.AttackRadius * 0.5f;
+            agent.autoBraking = false;
         }
 
-        guardScript.GetAIPath().canMove = true;
+        var target = guardScript.GetCurrentTarget();
+        if (target != null)
+        {
+            lastKnownPlayerPosition = target.position;
+            agent?.SetDestination(lastKnownPlayerPosition);
+        }
+
         timeSinceLost = 0f;
     }
 
     public override void stateUpdate()
     {
-       Debug.Log("Chasing Opponent");
-        chaseOpponent();
+        var target = guardScript.GetCurrentTarget();
+
+        if (target != null)
+        {
+            lastKnownPlayerPosition = target.position;
+            timeSinceLost = 0f;
+            agent?.SetDestination(lastKnownPlayerPosition);
+            return;
+        }
+
+        timeSinceLost += Time.deltaTime;
+
+        if (agent != null && Vector3.Distance(transform.position, lastKnownPlayerPosition) > 1f)
+            agent.SetDestination(lastKnownPlayerPosition);
+
+        if (timeSinceLost >= LOST_SIGHT_TIME)
+        {
+            allowExternalTransitions = true;
+            guardScript.ReturnToWander();
+        }
     }
 
-    void chaseOpponent()
+    public override void OnExit()
     {
-        var currentTarget = guardScript.GetCurrentTarget();
-
-        if (currentTarget != null)
-        {
-            // Player/opponent currently assigned -> update destination and reset timer
-            guardScript.GetAIDestinationSetter().target = currentTarget;
-            lastKnownPlayerPosition = currentTarget.position;
-            timeSinceLost = 0f;
-        }
-        else
-        {
-            // Lost sight: keep moving to last known position for a period
-            timeSinceLost += Time.deltaTime;
-            Debug.Log("Time Since Lost: " + timeSinceLost);
-
-            bool reachedLastKnown = Vector3.Distance(guardScript.transform.position,
-                                            lastKnownPlayerPosition) < 1f;
-            if (timeSinceLost >= LOST_SIGHT_TIME || reachedLastKnown)
-            {
-                // stop chasing and hand control back to guard to resume wandering
-                guardScript.GetAIDestinationSetter().target = null;
-                guardScript.GetAIPath().canMove = false;
-
-                // instruct guard to switch back to wander state
-                guardScript.ReturnToWander();
-
-                // disable this state update until reactivated by the guard
-                isActive = false;
-            }
-        }
+        base.OnExit();
+        allowExternalTransitions = true;
     }
 }

@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 13321870}
   - component: {fileID: 13321869}
   - component: {fileID: 13321873}
+  - component: {fileID: 13321874}
+  - component: {fileID: 13321875}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Strategist
@@ -259,6 +261,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &13321874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13321868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c020e7790516149bb82c1fb2d3ea96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthScript
+  maxHealth: 100
+--- !u!208 &13321875
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13321868}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &272347497
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,13 +664,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034851233899927653}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -8.2, y: -7.28, z: 13.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!136 &1012434749695178886
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -727,7 +758,7 @@ MonoBehaviour:
   persueState: {fileID: 4573515044497994311}
   startState: {fileID: 5173486924286349222}
   sightRange: 13.8
-  attackRadius: 1.46
+  attackRadius: 1.75
   agent: {fileID: 0}
   currentTarget: {fileID: 0}
 --- !u!33 &2965494545152239489
@@ -814,7 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7458e32092783604891539dcf1ebddbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WanderState
-  isActive: 1
+  isActive: 0
   allowExternalTransitions: 1
   wanderSpeed: 20
   wanderRadius: 15
