@@ -1,150 +1,105 @@
-using System.Collections.Generic;
-using System.Transactions;
-using Pathfinding;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class TheGuardScript : MonoBehaviour
 {
     [Header("States")]
-    [SerializeField] BaseStateClass wanderState, attackState, persueState;
+    [SerializeField] BaseStateClass wanderState;
+    [SerializeField] BaseStateClass attackState;
+    [SerializeField] BaseStateClass persueState;
+
     [Header("Starting State")]
     [SerializeField] BaseStateClass startState;
-    [Header("Detection Settings")]
-    [SerializeField]
-    float sightRange = 20f;
-    private AIDestinationSetter aiDestSetter;
-    private AIPath aiPath;
-    private GameObject opponentObject;
-    private Transform currentTarget;
 
-    [SerializeField]
-    float attackRadius = 5f;
+    [Header("Detection Settings")]
+    [SerializeField] float sightRange = 20f;
+    [SerializeField] float attackRadius = 5f;
+
+    public NavMeshAgent agent;
+    private GameObject opponentObject;
+    public Transform currentTarget;
+
     BaseStateClass currentState;
 
-    // Public getters so FSM states can interact with TheGuardScript internals.
-    public AIDestinationSetter GetAIDestinationSetter() => aiDestSetter;
-    public AIPath GetAIPath() => aiPath;
+    public NavMeshAgent GetNavMeshAgent() => agent;
     public Transform GetCurrentTarget() => currentTarget;
     public GameObject GetOpponentObject() => opponentObject;
+    public float AttackRadius => attackRadius;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
+
+        wanderState.Initialize(this);
+        persueState.Initialize(this);
+        attackState.Initialize(this);
+
         currentState = startState;
-        currentState.isActive = true;
-        aiDestSetter = GetComponent<AIDestinationSetter>();
-        aiPath = GetComponent<AIPath>();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        currentState.isActive = true; // BaseStateClass will call OnEnter on first Update
+    }
+
     void Update()
     {
-        //Debug switching
-        if (Keyboard.current.f1Key.isPressed)
-        {
+        // Manual debug switching
+        if (Keyboard.current.f1Key.wasPressedThisFrame)
             SwitchState(wanderState);
-        }
-        else if (Keyboard.current.f2Key.isPressed)
-        {
+        if (Keyboard.current.f2Key.wasPressedThisFrame)
             SwitchState(attackState);
-        }
-        else if (Keyboard.current.f3Key.isPressed)
-        {
+        if (Keyboard.current.f3Key.wasPressedThisFrame)
             SwitchState(persueState);
-        }
 
-        //Actual logic
+        // If current state blocks transitions, do nothing
+        if (!currentState.allowExternalTransitions)
+            return;
+
+        // Attack takes priority
         if (IsInAttackRange(attackRadius))
         {
             SwitchState(attackState);
-        }
-        else
-        {
-            if (IsInSightRange(sightRange))
-            {
-                if (currentTarget == null)
-                {
-                    if (opponentObject != null)
-                    {
-                        currentTarget = opponentObject.transform;
-                        aiDestSetter.target = currentTarget;
-                    }
-                }
-                SwitchState(persueState);
-            }
-            else
-            {
-                currentTarget = null;
-                aiDestSetter.target = null;
-                SwitchState(wanderState);
-            }
+            return;
         }
 
+        // Sight detection
+        if (IsInSightRange(sightRange))
+        {
+            SwitchState(persueState);
+            return;
+        }
+
+        // Otherwise wander
+        SwitchState(wanderState);
     }
+
     void SwitchState(BaseStateClass newState)
     {
-        if (currentState == newState
-            || newState == null)
+        if (newState == null || newState == currentState)
             return;
+
         currentState.isActive = false;
         currentState = newState;
         currentState.isActive = true;
     }
 
-    // Public getters so FSM states can interact with TheGuardScript internals.
-    public AIDestinationSetter GetAIDestinationSetter() => aiDestSetter;
-    public AIPath GetAIPath() => aiPath;
-    public Transform GetCurrentTarget() => currentTarget;
-    public GameObject GetOpponentObject() => opponentObject;
-
-    // Allow states to ask the guard to return to patrol/wander state.
-    public void ReturnToWander()
-    {
-        SwitchState(wanderState);
-    }
-    public void ReturnToPersue()
-    {
-        SwitchState(persueState);
-    }
+    public void ReturnToWander() => SwitchState(wanderState);
+    public void ReturnToPersue() => SwitchState(persueState);
 
     bool IsInAttackRange(float radius)
     {
-        bool isInRange = false;
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
-        foreach (var hitCollider in hitColliders)
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius);
+
+        foreach (var hit in hits)
         {
-            if (hitCollider.transform.CompareTag("Strategist") || hitCollider.transform.CompareTag("Gladiator"))
+            Transform root = hit.transform.root;
+
+            if (root.CompareTag("Strategist") || root.CompareTag("Gladiator"))
             {
-
-                isInRange = true;
-                break;
-            }
-        }
-        return isInRange;
-
-    }
-    bool IsInSightRange(float range)
-    {
-        // Safely attempt to raycast toward the opponentObject (if any).
-        if (opponentObject == null)
-            return false;
-
-        Vector3 origin = transform.position + Vector3.up * 1.1f;
-        Vector3 target = opponentObject.transform.position + Vector3.up * 1.1f;
-
-        Vector3 direction = (target - origin).normalized;
-
-        Debug.DrawRay(origin, direction * 50f, Color.red);
-
-        if (Physics.Raycast(origin, direction,
-                        out RaycastHit hit, range))
-        {
-            Debug.Log("Ray hit: " + hit.collider.name);
-            if (hit.collider.CompareTag("Strategist") || hit.collider.CompareTag("Gladiator"))
-            {
-                // capture the found opponent for targeting
-                opponentObject = hit.collider.gameObject;
+                opponentObject = root.gameObject;
+                currentTarget = root;
                 return true;
             }
         }
@@ -152,19 +107,51 @@ public class TheGuardScript : MonoBehaviour
         return false;
     }
 
+    bool IsInSightRange(float range)
+    {
+        Vector3 origin = transform.position + Vector3.up * 1.1f;
 
+        Collider[] hits = Physics.OverlapSphere(origin, range);
+
+        foreach (var hit in hits)
+        {
+            Transform root = hit.transform.root;
+            string rootTag = root.tag;
+
+            if (rootTag != "Strategist" && rootTag != "Gladiator")
+                continue;
+
+            Vector3 targetPos = root.position + Vector3.up * 1.1f;
+            Vector3 dir = (targetPos - origin).normalized;
+
+            float dot = Vector3.Dot(transform.forward, dir);
+            if (dot < 0.5f)
+                continue;
+
+            if (Physics.Raycast(origin, dir, out RaycastHit sightHit, sightRange))
+            {
+                Debug.DrawRay(origin, dir * sightRange, Color.red);
+
+                if (sightHit.collider.transform.root == root)
+                {
+                    opponentObject = root.gameObject;
+                    currentTarget = root;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     private void OnDrawGizmos()
     {
-        // Set the color with custom alpha.
-        Gizmos.color = new Color(1f, 0f, 0f, 0.5f); // Red with custom alpha
+        // Sight range
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * 1.1f, sightRange);
 
-        // Draw the sphere.
-        Gizmos.DrawSphere(transform.position, attackRadius);
-
-        // Draw wire sphere outline.
-        Gizmos.color = Color.white;
+        // Attack range
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
-
 }

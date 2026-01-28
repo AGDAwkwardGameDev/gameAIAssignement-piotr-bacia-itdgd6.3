@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 5173486926171546687}
   - component: {fileID: 4573515045846604254}
   - component: {fileID: 8796553737578140837}
-  - component: {fileID: 6585210511605015817}
+  - component: {fileID: 6330412574336240929}
+  - component: {fileID: 2235233956860846801}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -135,6 +136,9 @@ MonoBehaviour:
   attackState: {fileID: 8796553737578140837}
   persueState: {fileID: 4573515045846604254}
   startState: {fileID: 5173486926171546687}
+  sightRange: 20
+  currentTarget: {fileID: 0}
+  attackRadius: 5
 --- !u!114 &5173486926171546687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WanderState
   isActive: 0
+  wanderSpeed: 2.5
+  wanderRadius: 15
+  goalDistance: 0.5
 --- !u!114 &4573515045846604254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersueState
   isActive: 0
+  persueSpeed: 6
 --- !u!114 &8796553737578140837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackState
   isActive: 0
---- !u!114 &6585210511605015817
+  attackRadius: 5
+  damagePerHit: 10
+  attackInterval: 1
+--- !u!114 &6330412574336240929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,22 +194,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1034851233083995132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Script: {fileID: 11500000, guid: 83c020e7790516149bb82c1fb2d3ea96, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: AstarPathfindingProject::Pathfinding.Seeker
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
+  m_EditorClassIdentifier: Assembly-CSharp::HealthScript
+  maxHealth: 100
+--- !u!195 &2235233956860846801
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034851233083995132}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
