@@ -50,9 +50,6 @@ public class MLHealthScript : HealthScript
         currentHealth = maxHealth;
     }
 
-    // ---------------------------------------------------------
-    // ML‑FRIENDLY PROPERTIES
-    // ---------------------------------------------------------
     public bool IsDeadML => currentHealth <= 0f;
     public float HealthPercentML => currentHealth / maxHealth;
 }

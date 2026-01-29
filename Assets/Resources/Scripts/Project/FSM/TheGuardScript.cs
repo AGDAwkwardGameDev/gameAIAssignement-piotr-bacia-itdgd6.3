@@ -45,14 +45,7 @@ public class TheGuardScript : MonoBehaviour
 
     void Update()
     {
-        // Manual debug switching
-        if (Keyboard.current.f1Key.wasPressedThisFrame)
-            SwitchState(wanderState);
-        if (Keyboard.current.f2Key.wasPressedThisFrame)
-            SwitchState(attackState);
-        if (Keyboard.current.f3Key.wasPressedThisFrame)
-            SwitchState(persueState);
-
+        // Manual debug switchin
         // If current state blocks transitions, do nothing
         if (!currentState.allowExternalTransitions)
             return;
