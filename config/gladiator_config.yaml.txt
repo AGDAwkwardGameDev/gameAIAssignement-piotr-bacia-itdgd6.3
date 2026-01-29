@@ -1,0 +1,23 @@
+behaviors:
+  GladiatorBrain:
+    trainer_type: ppo
+    max_steps: 2e6
+    time_horizon: 128
+    summary_freq: 10000
+
+    hyperparameters:
+      batch_size: 1024
+      buffer_size: 10240
+      learning_rate: 3e-4
+      beta: 5e-4
+      epsilon: 0.2
+      lambd: 0.95
+
+    network_settings:
+      num_layers: 2
+      hidden_units: 256
+
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
