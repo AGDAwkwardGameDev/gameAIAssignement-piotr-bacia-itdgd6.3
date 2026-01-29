@@ -12,42 +12,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0857b2a53377458ebec6c4b1179e3c5a, type: 3}
   m_Name: Generator
   m_EditorClassIdentifier: CrashKonijn.Goap.Runtime::CrashKonijn.Goap.Runtime.GeneratorScriptable
-  nameSpace: CrashKonijn.Goap.GenTest
+  nameSpace: StrategistGOAP
   scripts:
     goals:
     - <Name>k__BackingField: SurvivalGoal
-      fullName: CrashKonijn.Goap.GenTest.SurvivalGoal, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/Goals/SurvivalGoal.cs
-      <Id>k__BackingField: Survival-ff69116e-0e3a-49c6-b8ef-c882090e4353
+      fullName: StrategistGOAP.SurvivalGoal, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Goals/SurvivalGoal.cs
+      <Id>k__BackingField: SurvivalGoal-unique-001
     actions:
     - <Name>k__BackingField: EmergencyCloseQuartersSurvivalAction
-      fullName: CrashKonijn.Goap.GenTest.EmergencyCloseQuartersSurvivalAction, Assembly-CSharp,
+      fullName: StrategistGOAP.EmergencyCloseQuartersSurvivalAction, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/Actions/EmergencyCloseQuartersSurvivalAction.cs
-      <Id>k__BackingField: EmergencyCloseQuartersSurvival-83a932fb-a501-4e9c-bd11-e3cc7f84ddfb
-    worldSensors: []
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Actions/EmergencyMeleeAction.cs
+      <Id>k__BackingField: EmergencyCQSurvivalAction-unique-002
+    worldSensors:
+    - <Name>k__BackingField: HealthPickupScanner
+      fullName: StrategistGOAP.HealthPickupScanner, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Sensors/HealthPickupScanner.cs
+      <Id>k__BackingField: HealthPickupScanner-unique-004
+    - <Name>k__BackingField: VitalityStatusSensor
+      fullName: StrategistGOAP.VitalityStatusSensor, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Sensors/VitalityStatusSensor.cs
+      <Id>k__BackingField: VitalitySensor-unique-003
     worldKeys:
     - <Name>k__BackingField: HealthPickupPresent
-      fullName: CrashKonijn.Goap.GenTest.HealthPickupPresent, Assembly-CSharp, Version=0.0.0.0,
+      fullName: StrategistGOAP.HealthPickupPresent, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/WorldKeys/HealthPickupPresent.cs
-      <Id>k__BackingField: HealthPickupPresent-86c81e98-055e-440d-b51f-3c1373ba37b8
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/WorldKeys/HealthPickupPresent.cs
+      <Id>k__BackingField: HealthPickupPresent-6696c1ff-1a08-4a19-af37-a8a628f8be6e
     - <Name>k__BackingField: LowVitalityFlag
-      fullName: CrashKonijn.Goap.GenTest.LowVitalityFlag, Assembly-CSharp, Version=0.0.0.0,
+      fullName: StrategistGOAP.LowVitalityFlag, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/WorldKeys/LowVitalityFlag.cs
-      <Id>k__BackingField: LowVitalityFlag-dd5f39a6-5511-4a90-a6c5-efb5696a748d
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/WorldKeys/LowVitalityFlag.cs
+      <Id>k__BackingField: LowVitalityFlag-dd4ac677-91e6-48d3-a163-c0555043bced
     - <Name>k__BackingField: RetreatZoneReached
-      fullName: CrashKonijn.Goap.GenTest.RetreatZoneReached, Assembly-CSharp, Version=0.0.0.0,
+      fullName: StrategistGOAP.RetreatZoneReached, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/WorldKeys/RetreatZoneReached.cs
-      <Id>k__BackingField: RetreatZoneReached-65dc952d-b724-498f-a7a1-f1df200daf34
-    targetSensors: []
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/WorldKeys/RetreatZoneReached.cs
+      <Id>k__BackingField: RetreatZoneReached-0cecb571-a162-4efa-a99a-4aceb56a56f8
+    targetSensors:
+    - <Name>k__BackingField: ClosestHealthPickupSensor
+      fullName: StrategistGOAP.ClosestHealthPickupSensor, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Sensors/ClosestHealthPickupSensor.cs
+      <Id>k__BackingField: ClosestHealthPickupSensor-unique-005
+    - <Name>k__BackingField: NearestHealthPackTargetSensor
+      fullName: StrategistGOAP.NearestHealthPackTargetSensor, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Sensors/NearestHealthPackTargetSensor.cs
+      <Id>k__BackingField: NearestHealthPackTargetSensor-b8c9d0e1-f2a3-4567-1234-678901234567
     targetKeys:
     - <Name>k__BackingField: ClosestHealthPickupTarget
-      fullName: CrashKonijn.Goap.GenTest.ClosestHealthPickupTarget, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/TargetKeys/ClosestHealthPickupTarget.cs
-      <Id>k__BackingField: ClosestHealthPickupTarget-3987bfd4-a4ef-4dfd-8db1-bd38d24b8a1d
+      fullName: StrategistGOAP.ClosestHealthPickupTarget, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Keys/TargetKeys.cs
+      <Id>k__BackingField: ClosestHealthPickupTarget-unique-004
+    - <Name>k__BackingField: NearestHealthPickupTarget
+      fullName: StrategistGOAP.NearestHealthPickupTarget, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Targets/NearestHealthPickupTarget.cs
+      <Id>k__BackingField: NearestHealthPickupTarget-unique-006
     multiSensors: []

@@ -2,6 +2,6 @@ using CrashKonijn.Goap.Runtime;
 
 namespace StrategistGOAP
 {
-    [GoapId("HealthPickupPresent-a1cd01ce-e71b-4745-97c9-9420686e4c0b")]
+    [GoapId("HealthPickupPresent-6696c1ff-1a08-4a19-af37-a8a628f8be6e")]
     public class HealthPickupPresent : WorldKeyBase {}
 }
