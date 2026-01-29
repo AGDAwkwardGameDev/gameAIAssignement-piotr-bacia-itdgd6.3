@@ -20,7 +20,7 @@ MonoBehaviour:
     conditions:
     - worldKey:
         <Name>k__BackingField: LowVitalityFlag
-        <Id>k__BackingField: LowVitalityFlag-unique-001
+        <Id>k__BackingField: LowVitalityFlag-dd4ac677-91e6-48d3-a163-c0555043bced
       comparison: 3
       amount: 1
   actions:
@@ -41,18 +41,18 @@ MonoBehaviour:
     conditions:
     - worldKey:
         <Name>k__BackingField: LowVitalityFlag
-        <Id>k__BackingField: LowVitalityFlag-unique-001
+        <Id>k__BackingField: LowVitalityFlag-dd4ac677-91e6-48d3-a163-c0555043bced
       comparison: 3
       amount: 1
     - worldKey:
         <Name>k__BackingField: HealthPickupPresent
-        <Id>k__BackingField: HealthPickupPresent-3de91f6e-bbdd-46a4-a5c7-a645b5d6a7e7
+        <Id>k__BackingField: HealthPickupPresent-6696c1ff-1a08-4a19-af37-a8a628f8be6e
       comparison: 3
       amount: 1
     effects:
     - worldKey:
         <Name>k__BackingField: RetreatZoneReached
-        <Id>k__BackingField: RetreatZoneReached-4c9da6cd-588e-4407-bbac-d2d591d9943c
+        <Id>k__BackingField: RetreatZoneReached-0cecb571-a162-4efa-a99a-4aceb56a56f8
       effect: 0
   worldSensors:
   - sensor:
@@ -60,13 +60,13 @@ MonoBehaviour:
       <Id>k__BackingField: VitalitySensor-unique-003
     worldKey:
       <Name>k__BackingField: LowVitalityFlag
-      <Id>k__BackingField: LowVitalityFlag-unique-001
+      <Id>k__BackingField: LowVitalityFlag-dd4ac677-91e6-48d3-a163-c0555043bced
   - sensor:
       <Name>k__BackingField: HealthPickupScanner
       <Id>k__BackingField: HealthPickupScanner-unique-004
     worldKey:
       <Name>k__BackingField: HealthPickupPresent
-      <Id>k__BackingField: HealthPickupPresent-3de91f6e-bbdd-46a4-a5c7-a645b5d6a7e7
+      <Id>k__BackingField: HealthPickupPresent-6696c1ff-1a08-4a19-af37-a8a628f8be6e
   targetSensors:
   - sensor:
       <Name>k__BackingField: ClosestHealthPickupSensor

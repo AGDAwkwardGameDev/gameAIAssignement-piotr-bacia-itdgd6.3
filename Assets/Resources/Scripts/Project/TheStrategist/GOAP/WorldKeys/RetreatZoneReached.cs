@@ -2,6 +2,6 @@ using CrashKonijn.Goap.Runtime;
 
 namespace StrategistGOAP
 {
-    [GoapId("RetreatZoneReached-bfbc4f8c-b58c-4ea9-a774-3a59f36c01b2")]
+    [GoapId("RetreatZoneReached-0cecb571-a162-4efa-a99a-4aceb56a56f8")]
     public class RetreatZoneReached : WorldKeyBase {}
 }
