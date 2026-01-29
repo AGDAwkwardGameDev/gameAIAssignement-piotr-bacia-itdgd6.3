@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthScript : MonoBehaviour
 {
     public float maxHealth = 100f;
-    float currentHealth;
+    public float currentHealth;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +22,10 @@ public class HealthScript : MonoBehaviour
     {
         Debug.Log(transform.gameObject.name+  " has died.");
         Destroy(gameObject);
+    }
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
     }
 
     // Update is called once per frame
