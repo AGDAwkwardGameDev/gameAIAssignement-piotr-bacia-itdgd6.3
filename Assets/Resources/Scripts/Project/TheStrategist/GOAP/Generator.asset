@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0857b2a53377458ebec6c4b1179e3c5a, type: 3}
+  m_Name: Generator
+  m_EditorClassIdentifier: CrashKonijn.Goap.Runtime::CrashKonijn.Goap.Runtime.GeneratorScriptable
+  nameSpace: CrashKonijn.Goap.GenTest
+  scripts:
+    goals:
+    - <Name>k__BackingField: SurvivalGoal
+      fullName: CrashKonijn.Goap.GenTest.SurvivalGoal, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/Goals/SurvivalGoal.cs
+      <Id>k__BackingField: Survival-ff69116e-0e3a-49c6-b8ef-c882090e4353
+    actions:
+    - <Name>k__BackingField: EmergencyCloseQuartersSurvivalAction
+      fullName: CrashKonijn.Goap.GenTest.EmergencyCloseQuartersSurvivalAction, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/Actions/EmergencyCloseQuartersSurvivalAction.cs
+      <Id>k__BackingField: EmergencyCloseQuartersSurvival-83a932fb-a501-4e9c-bd11-e3cc7f84ddfb
+    worldSensors: []
+    worldKeys:
+    - <Name>k__BackingField: HealthPickupPresent
+      fullName: CrashKonijn.Goap.GenTest.HealthPickupPresent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/WorldKeys/HealthPickupPresent.cs
+      <Id>k__BackingField: HealthPickupPresent-86c81e98-055e-440d-b51f-3c1373ba37b8
+    - <Name>k__BackingField: LowVitalityFlag
+      fullName: CrashKonijn.Goap.GenTest.LowVitalityFlag, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/WorldKeys/LowVitalityFlag.cs
+      <Id>k__BackingField: LowVitalityFlag-dd5f39a6-5511-4a90-a6c5-efb5696a748d
+    - <Name>k__BackingField: RetreatZoneReached
+      fullName: CrashKonijn.Goap.GenTest.RetreatZoneReached, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/WorldKeys/RetreatZoneReached.cs
+      <Id>k__BackingField: RetreatZoneReached-65dc952d-b724-498f-a7a1-f1df200daf34
+    targetSensors: []
+    targetKeys:
+    - <Name>k__BackingField: ClosestHealthPickupTarget
+      fullName: CrashKonijn.Goap.GenTest.ClosestHealthPickupTarget, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      <Path>k__BackingField: Assets/Resources/Scripts/Project/TheStrategist/GOAP/Factories/TargetKeys/ClosestHealthPickupTarget.cs
+      <Id>k__BackingField: ClosestHealthPickupTarget-3987bfd4-a4ef-4dfd-8db1-bd38d24b8a1d
+    multiSensors: []

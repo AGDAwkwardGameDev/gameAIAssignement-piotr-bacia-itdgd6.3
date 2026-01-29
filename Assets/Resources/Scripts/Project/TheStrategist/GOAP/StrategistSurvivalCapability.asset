@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875fbfa2d1734285b353878b31467c98, type: 3}
+  m_Name: StrategistSurvivalCapability
+  m_EditorClassIdentifier: CrashKonijn.Goap.Runtime::CrashKonijn.Goap.Runtime.CapabilityConfigScriptable
+  goals:
+  - goal:
+      <Name>k__BackingField: SurvivalGoal
+      <Id>k__BackingField: SurvivalGoal-unique-001
+    baseCost: 1
+    conditions:
+    - worldKey:
+        <Name>k__BackingField: LowVitalityFlag
+        <Id>k__BackingField: LowVitalityFlag-unique-001
+      comparison: 3
+      amount: 1
+  actions:
+  - action:
+      <Name>k__BackingField: EmergencyCloseQuartersSurvivalAction
+      <Id>k__BackingField: EmergencyCQSurvivalAction-unique-002
+    target:
+      <Name>k__BackingField: ClosestHealthPickupTarget
+      <Id>k__BackingField: ClosestHealthPickupTarget-unique-004
+    properties:
+      rid: 2437612452305699020
+    baseCost: 1
+    stoppingDistance: 0.1
+    validateTarget: 1
+    requiresTarget: 1
+    validateConditions: 1
+    moveMode: 0
+    conditions:
+    - worldKey:
+        <Name>k__BackingField: LowVitalityFlag
+        <Id>k__BackingField: LowVitalityFlag-unique-001
+      comparison: 3
+      amount: 1
+    - worldKey:
+        <Name>k__BackingField: HealthPickupPresent
+        <Id>k__BackingField: HealthPickupPresent-3de91f6e-bbdd-46a4-a5c7-a645b5d6a7e7
+      comparison: 3
+      amount: 1
+    effects:
+    - worldKey:
+        <Name>k__BackingField: RetreatZoneReached
+        <Id>k__BackingField: RetreatZoneReached-4c9da6cd-588e-4407-bbac-d2d591d9943c
+      effect: 0
+  worldSensors:
+  - sensor:
+      <Name>k__BackingField: VitalityStatusSensor
+      <Id>k__BackingField: VitalitySensor-unique-003
+    worldKey:
+      <Name>k__BackingField: LowVitalityFlag
+      <Id>k__BackingField: LowVitalityFlag-unique-001
+  - sensor:
+      <Name>k__BackingField: HealthPickupScanner
+      <Id>k__BackingField: HealthPickupScanner-unique-004
+    worldKey:
+      <Name>k__BackingField: HealthPickupPresent
+      <Id>k__BackingField: HealthPickupPresent-3de91f6e-bbdd-46a4-a5c7-a645b5d6a7e7
+  targetSensors:
+  - sensor:
+      <Name>k__BackingField: ClosestHealthPickupSensor
+      <Id>k__BackingField: ClosestHealthPickupSensor-unique-005
+    targetKey:
+      <Name>k__BackingField: ClosestHealthPickupTarget
+      <Id>k__BackingField: ClosestHealthPickupTarget-unique-004
+  multiSensors: []
+  generatorScriptable: {fileID: 11400000, guid: 7aa5792e58e398a4b8ad5fbcd53d3636, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 2437612452305699020
+      type: {class: EmptyActionProperties, ns: CrashKonijn.Agent.Runtime, asm: CrashKonijn.Agent.Runtime}
+      data: 
