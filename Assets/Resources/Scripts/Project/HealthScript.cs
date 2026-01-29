@@ -10,7 +10,7 @@ public class HealthScript : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void DealDamage(float damageAmount)
+    public virtual void DealDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
         if (currentHealth <= 0)
@@ -23,7 +23,7 @@ public class HealthScript : MonoBehaviour
         Debug.Log(transform.gameObject.name+  " has died.");
         Destroy(gameObject);
     }
-    public void Heal(float healAmount)
+    public virtual void Heal(float healAmount)
     {
         currentHealth += healAmount;
         if (currentHealth > maxHealth)
