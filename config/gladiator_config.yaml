@@ -1,6 +1,7 @@
 behaviors:
   GladiatorBrain:
     trainer_type: ppo
+    init_path: D:/GameAIArena/gameAIAssignement/Models/GladiatorBrain.onnx
     max_steps: 2e6
     time_horizon: 128
     summary_freq: 10000

@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1769717973",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\Piotr\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\mlagents-learn D:\\GameAIArena\\gameAIAssignement\\config\\gladiator_config.yaml --run-id=GladiatorRun14",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.10.0+cpu",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1769718044"
+    },
+    "total": 70.62984100001631,
+    "count": 1,
+    "self": 0.03273710000212304,
+    "children": {
+        "run_training.setup": {
+            "total": 0.1960462999995798,
+            "count": 1,
+            "self": 0.1960462999995798
+        },
+        "TrainerController.start_learning": {
+            "total": 70.40105760001461,
+            "count": 1,
+            "self": 0.00020380003843456507,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 70.40082479998819,
+                    "count": 1,
+                    "self": 70.40082479998819
+                },
+                "TrainerController._save_models": {
+                    "total": 2.8999987989664078e-05,
+                    "count": 1,
+                    "self": 2.8999987989664078e-05
+                }
+            }
+        }
+    }
+}

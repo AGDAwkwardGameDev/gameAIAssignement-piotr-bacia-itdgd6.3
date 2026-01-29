@@ -65,8 +65,8 @@ public class TheGladiatorScript : Agent
             sensor.AddObservation(dist / detectionRadius);
             sensor.AddObservation(dist <= meleeRange ? 1f : 0f);
 
-            var tHealth = target.GetComponent<MLHealthScript>();
-            sensor.AddObservation(tHealth != null && !tHealth.IsDeadML ? 1f : 0f);
+            var tHealth = target.GetComponent<HealthScript>();
+            sensor.AddObservation(tHealth != null && tHealth.currentHealth != 0 ? 1f : 0f);
         }
         else
         {
@@ -112,12 +112,12 @@ public class TheGladiatorScript : Agent
             {
                 if (dist <= meleeRange)
                 {
-                    var tHealth = target.GetComponent<MLHealthScript>();
-                    if (tHealth != null && !tHealth.IsDeadML)
+                    var tHealth = target.GetComponent<HealthScript>();
+                    if (tHealth != null && tHealth.currentHealth != 0f)
                     {
                         tHealth.DealDamage(meleeDamage);
 
-                        if (tHealth.IsDeadML)
+                        if (tHealth.currentHealth == 0)
                         {
                             AddReward(1.0f);
                             EndEpisode();
